@@ -8,6 +8,11 @@ app.use(requestIp.mw());
 
 app.get('/', (req, res) => {
     let ip = req.clientIp;
+
+    if(req.query.ip) {
+        ip = req.query.ip;
+    }
+
     let response = geoip.lookup(ip);
     return res.json(response);
 });
