@@ -8,7 +8,8 @@ app.use(requestIp.mw());
 
 app.get('/', (req, res) => {
     let ip = req.clientIp;
-    return res.json({ ip });
+    let response = geoip.lookup(ip);
+    return res.json(response);
 });
 
 app.listen(port, () => {
